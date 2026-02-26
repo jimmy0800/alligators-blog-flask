@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}{{ site_title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- 英雄區域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">下水道實驗室</h1>
+            <p class="hero-subtitle">{{ site_tagline }}</p>
+            <p class="hero-description">
+                歡迎來到這個充滿好奇心的技術研究所。
+                在這裡，我們深入系統底層，拆解硬體設備，
+                探索每一個技術細節背後的邏輯與原理。
+            </p>
+            <div class="hero-buttons">
+                <a href="/tech-logs" class="btn btn-primary">開始探索滲透紀錄</a>
+                <a href="/device-analysis" class="btn btn-secondary">查看樣本拆解</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 最新文章區域 -->
+    <section class="latest-posts">
+        <h2 class="section-title">最新實驗報告</h2>
+        
+        <div class="posts-grid">
+            <!-- 滲透紀錄 -->
+            <div class="posts-column">
+                <h3 class="column-title">
+                    <span class="column-icon">🔍</span>
+                    滲透紀錄
+                </h3>
+                <div class="posts-list">
+                    {% if tech_posts %}
+                        {% for post in tech_posts[:5] %}
+                        <article class="post-card">
+                            <div class="post-card-header">
+                                <h4><a href="/post/{{ post.slug }}" class="post-link">{{ post.title }}</a></h4>
+                                <span class="post-date">{{ post.date_str }}</span>
+                            </div>
+                            {% if post.tags %}
+                            <div class="post-tags">
+                                {% for tag in post.tags %}
+                                <span class="tag">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </article>
+                        {% endfor %}
+                    {% else %}
+                    <p class="empty-state">暫無文章</p>
+                    {% endif %}
+                </div>
+                <a href="/tech-logs" class="view-all">查看全部 →</a>
+            </div>
+            
+            <!-- 樣本拆解 -->
+            <div class="posts-column">
+                <h3 class="column-title">
+                    <span class="column-icon">🔧</span>
+                    樣本拆解
+                </h3>
+                <div class="posts-list">
+                    {% if device_posts %}
+                        {% for post in device_posts[:5] %}
+                        <article class="post-card">
+                            <div class="post-card-header">
+                                <h4><a href="/post/{{ post.slug }}" class="post-link">{{ post.title }}</a></h4>
+                                <span class="post-date">{{ post.date_str }}</span>
+                            </div>
+                            {% if post.tags %}
+                            <div class="post-tags">
+                                {% for tag in post.tags %}
+                                <span class="tag">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </article>
+                        {% endfor %}
+                    {% else %}
+                    <p class="empty-state">暫無文章</p>
+                    {% endif %}
+                </div>
+                <a href="/device-analysis" class="view-all">查看全部 →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 關於本實驗室 -->
+    <section class="about-preview">
+        <h2 class="section-title">關於本實驗室</h2>
+        <div class="about-content">
+            <p>
+                這是一個致力於技術研究與分享的個人部落格。
+                我們專注於深入探討系統架構、硬體設計和技術細節，
+                透過實驗和拆解來理解技術的本質。
+            </p>
+            <a href="/about" class="btn btn-outline">認識首席研究員 →</a>
+        </div>
+    </section>
+</div>
+{% endblock %}

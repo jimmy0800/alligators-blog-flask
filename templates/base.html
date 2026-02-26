@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ site_title }}{% endblock %}</title>
+    <meta name="description" content="{{ site_tagline }}">
+    
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 代碼高亮 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    
+    <!-- 主樣式表 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <!-- 背景網格效果 -->
+    <div class="grid-background"></div>
+    
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <a href="/" class="logo">
+                    <span class="logo-icon">⚗️</span>
+                    <span class="logo-text">Alligator's Lab</span>
+                </a>
+                <p class="tagline">{{ site_tagline }}</p>
+            </div>
+            
+            <ul class="navbar-menu">
+                <li><a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">實驗室入口</a></li>
+                <li><a href="/tech-logs" class="nav-link {% if request.path.startswith('/tech-logs') %}active{% endif %}">滲透紀錄</a></li>
+                <li><a href="/device-analysis" class="nav-link {% if request.path.startswith('/device-analysis') %}active{% endif %}">樣本拆解</a></li>
+                <li><a href="/about" class="nav-link {% if request.path == '/about' %}active{% endif %}">首席研究員</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 主要內容 -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- 頁腳 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 下水道實驗室 | Alligator's Lab. 保留所有權利。</p>
+            <p class="footer-tagline">在底層邏輯中，挖掘技術的寶藏。</p>
+        </div>
+    </footer>
+    
+    <!-- 代碼高亮腳本 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    
+    <!-- 自訂腳本 -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

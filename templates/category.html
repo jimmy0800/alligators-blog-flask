@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category_title }} - {{ site_title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- 分類頁頭 -->
+    <section class="category-header">
+        <h1 class="category-title">{{ category_title }}</h1>
+        <p class="category-description">{{ category_description }}</p>
+        <p class="post-count">共 {{ posts|length }} 篇文章</p>
+    </section>
+    
+    <!-- 文章列表 -->
+    <section class="posts-section">
+        {% if posts %}
+            <div class="posts-timeline">
+                {% for post in posts %}
+                <article class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="post-header">
+                            <h2><a href="/post/{{ post.slug }}" class="post-title-link">{{ post.title }}</a></h2>
+                            <time class="post-date" datetime="{{ post.date_str }}">{{ post.date_str }}</time>
+                        </div>
+                        
+                        {% if post.tags %}
+                        <div class="post-tags">
+                            {% for tag in post.tags %}
+                            <span class="tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        
+                        <a href="/post/{{ post.slug }}" class="read-more">閱讀全文 →</a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <p>暫無文章</p>
+                <p class="empty-hint">新的實驗報告即將發布...</p>
+            </div>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}
