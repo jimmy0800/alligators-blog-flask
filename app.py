@@ -224,11 +224,13 @@ def index():
     """首頁 - 實驗室入口"""
     tech_posts = load_all_posts('tech-logs')
     device_posts = load_all_posts('device-analysis')
+    life_posts = load_all_posts('life-thoughts')
     
     return render_template(
         'index.html',
         tech_posts=tech_posts,
         device_posts=device_posts,
+        life_posts=life_posts,
     )
 
 
@@ -254,6 +256,19 @@ def device_analysis():
         category='device-analysis',
         category_title='樣本拆解',
         category_description='拆解各類電子設備，發掘硬體秘密',
+        posts=posts,
+    )
+
+
+@app.route('/life-thoughts')
+def life_thoughts():
+    """生活碎念列表"""
+    posts = load_all_posts('life-thoughts')
+    return render_template(
+        'category.html',
+        category='life-thoughts',
+        category_title='生活碎念',
+        category_description='分享日常的技術感悟和生活思考',
         posts=posts,
     )
 
