@@ -2,7 +2,10 @@
 title: Markdown 完全指南：從入門到精通
 category: tech-logs
 tags: Markdown, 文檔, 寫作技巧
+image: /static/images/tech-life-illustration.png
 ---
+
+![Markdown 指南](/static/images/tech-life-illustration.png)
 
 # Markdown 完全指南：從入門到精通
 

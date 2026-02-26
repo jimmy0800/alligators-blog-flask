@@ -25,7 +25,7 @@ function initializeCodeHighlight() {
         // 創建複製按鈕
         const copyButton = document.createElement('button');
         copyButton.className = 'copy-button';
-        copyButton.textContent = '複製代碼';
+        copyButton.textContent = '複製';
         copyButton.setAttribute('data-index', index);
         copyButton.type = 'button';
         
@@ -45,13 +45,13 @@ function initializeCodeHighlight() {
                     copyButton.textContent = '✓ 已複製！';
                     copyButton.style.background = 'rgba(0, 255, 65, 0.3)';
                     setTimeout(() => {
-                        copyButton.textContent = '複製代碼';
+                        copyButton.textContent = '複製';
                         copyButton.style.background = '';
                     }, 2000);
                 }).catch(() => {
                     copyButton.textContent = '✗ 複製失敗';
                     setTimeout(() => {
-                        copyButton.textContent = '複製代碼';
+                        copyButton.textContent = '複製';
                     }, 2000);
                 });
             } else {
@@ -67,22 +67,22 @@ function initializeCodeHighlight() {
                     copyButton.textContent = '✓ 已複製！';
                     copyButton.style.background = 'rgba(0, 255, 65, 0.3)';
                     setTimeout(() => {
-                        copyButton.textContent = '複製代碼';
+                        copyButton.textContent = '複製';
                         copyButton.style.background = '';
                     }, 2000);
                 } catch (err) {
                     copyButton.textContent = '✗ 複製失敗';
                     setTimeout(() => {
-                        copyButton.textContent = '複製代碼';
+                        copyButton.textContent = '複製';
                     }, 2000);
                 }
                 document.body.removeChild(textArea);
             }
         });
         
-        // 將按鈕插入到代碼塊前面
+        // 將按鈕插入到代碼塊
         block.style.position = 'relative';
-        block.parentNode.insertBefore(copyButton, block);
+        block.appendChild(copyButton);
     });
 }
 
@@ -107,7 +107,7 @@ function initializeScrollEffects() {
     }, observerOptions);
     
     // 觀察所有文章卡片
-    document.querySelectorAll('.post-card, .timeline-item, .related-post-card').forEach(el => {
+    document.querySelectorAll('.post-item, .timeline-item, .related-post-card').forEach(el => {
         observer.observe(el);
     });
 }
@@ -167,31 +167,25 @@ function addFadeInStyles() {
         }
         
         .copy-button {
-            display: block;
-            margin-bottom: 8px;
+            position: absolute;
+            top: 8px;
+            right: 8px;
             background: rgba(0, 255, 65, 0.1);
             color: #00ff41;
             border: 1px solid rgba(0, 255, 65, 0.3);
-            padding: 8px 16px;
-            border-radius: 4px;
+            padding: 4px 12px;
+            border-radius: 3px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-family: 'JetBrains Mono', monospace;
             transition: all 0.3s ease;
             z-index: 10;
-            width: 100%;
-            text-align: center;
         }
         
         .copy-button:hover {
             background: rgba(0, 255, 65, 0.2);
             border-color: rgba(0, 255, 65, 0.5);
             box-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
-            transform: translateY(-2px);
-        }
-        
-        .copy-button:active {
-            transform: translateY(0);
         }
     `;
     document.head.appendChild(style);

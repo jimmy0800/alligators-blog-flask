@@ -2,7 +2,10 @@
 title: 硬體拆解指南：安全與技巧
 category: device-analysis
 tags: 硬體拆解, 電子產品, 工程
+image: /static/images/tech-life-illustration.png
 ---
+
+![硬體拆解](/static/images/tech-life-illustration.png)
 
 # 硬體拆解指南：安全與技巧
 

@@ -2,7 +2,10 @@
 title: Flask 部落格架構：從零到一
 category: tech-logs
 tags: Flask, Python, 架構設計
+image: /static/images/tech-life-illustration.png
 ---
+
+![Flask 架構](/static/images/tech-life-illustration.png)
 
 # Flask 部落格架構：從零到一
 
