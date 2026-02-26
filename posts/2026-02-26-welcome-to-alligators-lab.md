@@ -5,7 +5,7 @@ tags: 介紹, 開始
 image: /static/images/tech-life-illustration.png
 ---
 
-![下水道實驗室](/static/images/tech-life-illustration.png)
+![下水道實驗室](/static/images/404.jpg)
 
 # 歡迎來到下水道實驗室
 
