@@ -509,6 +509,7 @@ body {
     padding: var(--spacing-lg);
     overflow-x: auto;
     margin: var(--spacing-lg) 0;
+    position: relative;
 }
 
 .post-content pre code {
@@ -552,33 +553,34 @@ body {
 }
 
 /* ============================================================================
-   複製按鈕
+   複製按鈕 - 位置在代碼塊右上角
    ============================================================================ */
 
 .copy-button {
-    display: block;
-    margin-bottom: var(--spacing-md);
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    color: white;
-    border: none;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--radius-md);
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 255, 65, 0.1);
+    color: #00ff41;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    padding: 4px 12px;
+    border-radius: 3px;
     cursor: pointer;
-    font-size: 0.85rem;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif;
-    transition: all var(--transition-fast);
-    width: 100%;
-    text-align: center;
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    transition: all 0.3s ease;
+    z-index: 10;
     font-weight: 500;
 }
 
 .copy-button:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    background: rgba(0, 255, 65, 0.2);
+    border-color: rgba(0, 255, 65, 0.5);
+    box-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
 }
 
 .copy-button:active {
-    transform: translateY(0);
+    transform: scale(0.95);
 }
 
 /* ============================================================================
