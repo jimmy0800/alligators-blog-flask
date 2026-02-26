@@ -25,30 +25,64 @@ function initializeCodeHighlight() {
         // 創建複製按鈕
         const copyButton = document.createElement('button');
         copyButton.className = 'copy-button';
-        copyButton.textContent = '複製';
+        copyButton.textContent = '複製代碼';
         copyButton.setAttribute('data-index', index);
+        copyButton.type = 'button';
         
         // 添加複製功能
-        copyButton.addEventListener('click', function() {
-            const code = block.querySelector('code');
-            const text = code.textContent;
+        copyButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             
-            navigator.clipboard.writeText(text).then(() => {
-                copyButton.textContent = '已複製！';
-                setTimeout(() => {
-                    copyButton.textContent = '複製';
-                }, 2000);
-            }).catch(() => {
-                copyButton.textContent = '複製失敗';
-                setTimeout(() => {
-                    copyButton.textContent = '複製';
-                }, 2000);
-            });
+            const code = block.querySelector('code');
+            if (!code) return;
+            
+            const text = code.innerText || code.textContent;
+            
+            // 使用 Clipboard API
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    copyButton.textContent = '✓ 已複製！';
+                    copyButton.style.background = 'rgba(0, 255, 65, 0.3)';
+                    setTimeout(() => {
+                        copyButton.textContent = '複製代碼';
+                        copyButton.style.background = '';
+                    }, 2000);
+                }).catch(() => {
+                    copyButton.textContent = '✗ 複製失敗';
+                    setTimeout(() => {
+                        copyButton.textContent = '複製代碼';
+                    }, 2000);
+                });
+            } else {
+                // 備用方案：使用 execCommand
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    copyButton.textContent = '✓ 已複製！';
+                    copyButton.style.background = 'rgba(0, 255, 65, 0.3)';
+                    setTimeout(() => {
+                        copyButton.textContent = '複製代碼';
+                        copyButton.style.background = '';
+                    }, 2000);
+                } catch (err) {
+                    copyButton.textContent = '✗ 複製失敗';
+                    setTimeout(() => {
+                        copyButton.textContent = '複製代碼';
+                    }, 2000);
+                }
+                document.body.removeChild(textArea);
+            }
         });
         
-        // 將按鈕插入到代碼塊
+        // 將按鈕插入到代碼塊前面
         block.style.position = 'relative';
-        block.appendChild(copyButton);
+        block.parentNode.insertBefore(copyButton, block);
     });
 }
 
@@ -133,25 +167,31 @@ function addFadeInStyles() {
         }
         
         .copy-button {
-            position: absolute;
-            top: 8px;
-            right: 8px;
+            display: block;
+            margin-bottom: 8px;
             background: rgba(0, 255, 65, 0.1);
             color: #00ff41;
             border: 1px solid rgba(0, 255, 65, 0.3);
-            padding: 4px 12px;
-            border-radius: 3px;
+            padding: 8px 16px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-family: 'JetBrains Mono', monospace;
             transition: all 0.3s ease;
             z-index: 10;
+            width: 100%;
+            text-align: center;
         }
         
         .copy-button:hover {
             background: rgba(0, 255, 65, 0.2);
             border-color: rgba(0, 255, 65, 0.5);
             box-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .copy-button:active {
+            transform: translateY(0);
         }
     `;
     document.head.appendChild(style);
