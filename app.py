@@ -165,6 +165,31 @@ def load_post(slug):
     return None
 
 
+def extract_excerpt(markdown_content, max_chars=50):
+    """
+    從 Markdown 內容中提取簡介（前 N 個字）
+    移除 Markdown 語法，只保留純文本
+    """
+    # 移除 Markdown 標題
+    text = re.sub(r'^#+\s+', '', markdown_content, flags=re.MULTILINE)
+    # 移除 Markdown 連結
+    text = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', text)
+    # 移除 Markdown 粗體和斜體
+    text = re.sub(r'[*_]{1,2}([^*_]+)[*_]{1,2}', r'\1', text)
+    # 移除代碼塊
+    text = re.sub(r'```[^`]*```', '', text, flags=re.DOTALL)
+    # 移除行內代碼
+    text = re.sub(r'`([^`]+)`', r'\1', text)
+    # 移除 HTML 標籤
+    text = re.sub(r'<[^>]+>', '', text)
+    # 移除多餘空白
+    text = ' '.join(text.split())
+    # 截取前 N 個字
+    if len(text) > max_chars:
+        return text[:max_chars] + '...'
+    return text
+
+
 def load_all_posts(category=None):
     """
     載入所有文章，按日期倒序排列
@@ -173,7 +198,7 @@ def load_all_posts(category=None):
         category: 可選，篩選特定分類 ('tech-logs' 或 'device-analysis')
     
     返回：
-        文章列表，每篇包含 slug, title, date, date_str, category, tags
+        文章列表，每篇包含 slug, title, date, date_str, category, tags, excerpt, image
     """
     posts = []
     
@@ -192,14 +217,27 @@ def load_all_posts(category=None):
         except Exception:
             continue
         
-        # 提取 frontmatter
-        frontmatter, _ = extract_frontmatter(raw_content)
+        # 提取 frontmatter 和內容
+        frontmatter, markdown_content = extract_frontmatter(raw_content)
         
         post_category = frontmatter.get('category', 'tech-logs')
         
         # 篩選分類
         if category and post_category != category:
             continue
+        
+        # 提取簡介
+        excerpt = extract_excerpt(markdown_content, max_chars=50)
+        
+        # 提取文章中的第一張圖片，或使用預設圖片
+        image = frontmatter.get('image', '')
+        if not image:
+            # 從 Markdown 中提取第一張圖片
+            img_match = re.search(r'!\[([^\]]*)\]\(([^)]+)\)', markdown_content)
+            if img_match:
+                image = img_match.group(2)
+            else:
+                image = '/static/images/404.jpg'  # 預設圖片
         
         posts.append({
             'slug': parsed['slug'],
@@ -208,6 +246,8 @@ def load_all_posts(category=None):
             'date_str': parsed['date'].strftime('%Y-%m-%d'),
             'category': post_category,
             'tags': [t.strip() for t in frontmatter.get('tags', '').split(',') if t.strip()],
+            'excerpt': excerpt,
+            'image': image,
         })
     
     # 按日期倒序排列
