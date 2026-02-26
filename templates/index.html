@@ -4,130 +4,108 @@
 
 {% block content %}
 <div class="container">
-    <!-- 英雄區域 -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">下水道實驗室</h1>
-            <p class="hero-subtitle">{{ site_tagline }}</p>
-            <p class="hero-description">
+    <!-- 個人介紹區域 -->
+    <section class="intro-section">
+        <div class="intro-content">
+            <div class="intro-avatar">
+                <span class="avatar-emoji">⚗️</span>
+            </div>
+            <h1 class="intro-title">下水道實驗室</h1>
+            <p class="intro-tagline">{{ site_tagline }}</p>
+            <p class="intro-description">
                 歡迎來到這個充滿好奇心的技術研究所。
                 在這裡，我們深入系統底層，拆解硬體設備，
                 探索每一個技術細節背後的邏輯與原理。
             </p>
-            <div class="hero-buttons">
-                <a href="/tech-logs" class="btn btn-primary">開始探索滲透紀錄</a>
-                <a href="/device-analysis" class="btn btn-secondary">查看樣本拆解</a>
+            <div class="intro-social">
+                <a href="#" class="social-link" title="Twitter">𝕏</a>
+                <a href="#" class="social-link" title="GitHub">⚙️</a>
+                <a href="#" class="social-link" title="LinkedIn">💼</a>
             </div>
         </div>
     </section>
     
-    <!-- 最新文章區域 -->
-    <section class="latest-posts">
-        <h2 class="section-title">最新實驗報告</h2>
+    <!-- 最近文章區域 -->
+    <section class="recent-section">
+        <h2 class="section-title">Recent</h2>
         
-        <div class="posts-grid" style="grid-template-columns: repeat(3, 1fr);">
-            <!-- 滲透紀錄 -->
-            <div class="posts-column">
-                <h3 class="column-title">
-                    <span class="column-icon">🔍</span>
-                    滲透紀錄
-                </h3>
-                <div class="posts-list">
-                    {% if tech_posts %}
-                        {% for post in tech_posts[:5] %}
-                        <article class="post-card">
-                            <div class="post-card-header">
-                                <h4><a href="/post/{{ post.slug }}" class="post-link">{{ post.title }}</a></h4>
-                                <span class="post-date">{{ post.date_str }}</span>
-                            </div>
-                            {% if post.tags %}
-                            <div class="post-tags">
-                                {% for tag in post.tags %}
-                                <span class="tag">{{ tag }}</span>
-                                {% endfor %}
-                            </div>
-                            {% endif %}
-                        </article>
-                        {% endfor %}
-                    {% else %}
-                    <p class="empty-state">暫無文章</p>
-                    {% endif %}
-                </div>
-                <a href="/tech-logs" class="view-all">查看全部 →</a>
-            </div>
+        <div class="posts-grid">
+            {% set all_posts = tech_posts + device_posts + life_posts %}
+            {% set recent_posts = all_posts[:4] %}
             
-            <!-- 樣本拆解 -->
-            <div class="posts-column">
-                <h3 class="column-title">
-                    <span class="column-icon">🔧</span>
-                    樣本拆解
-                </h3>
-                <div class="posts-list">
-                    {% if device_posts %}
-                        {% for post in device_posts[:5] %}
-                        <article class="post-card">
-                            <div class="post-card-header">
-                                <h4><a href="/post/{{ post.slug }}" class="post-link">{{ post.title }}</a></h4>
-                                <span class="post-date">{{ post.date_str }}</span>
-                            </div>
+            {% if recent_posts %}
+                {% for post in recent_posts %}
+                <article class="post-card">
+                    <div class="post-card-content">
+                        <h3 class="post-card-title">
+                            <a href="/post/{{ post.slug }}" class="post-link">{{ post.title }}</a>
+                        </h3>
+                        <div class="post-card-meta">
+                            <span class="post-date">{{ post.date_str }}</span>
+                            <span class="post-separator">·</span>
+                            <span class="post-category">
+                                {% if post.category == 'tech-logs' %}
+                                    滲透紀錄
+                                {% elif post.category == 'device-analysis' %}
+                                    樣本拆解
+                                {% elif post.category == 'life-thoughts' %}
+                                    生活碎念
+                                {% else %}
+                                    {{ post.category }}
+                                {% endif %}
+                            </span>
                             {% if post.tags %}
-                            <div class="post-tags">
-                                {% for tag in post.tags %}
-                                <span class="tag">{{ tag }}</span>
-                                {% endfor %}
-                            </div>
+                            <span class="post-separator">·</span>
+                            <span class="post-word-count">{{ post.word_count|default(0) }} words</span>
                             {% endif %}
-                        </article>
-                        {% endfor %}
-                    {% else %}
-                    <p class="empty-state">暫無文章</p>
-                    {% endif %}
-                </div>
-                <a href="/device-analysis" class="view-all">查看全部 →</a>
-            </div>
-            
-            <!-- 生活碎念 -->
-            <div class="posts-column">
-                <h3 class="column-title">
-                    <span class="column-icon">💭</span>
-                    生活碎念
-                </h3>
-                <div class="posts-list">
-                    {% if life_posts %}
-                        {% for post in life_posts[:5] %}
-                        <article class="post-card">
-                            <div class="post-card-header">
-                                <h4><a href="/post/{{ post.slug }}" class="post-link">{{ post.title }}</a></h4>
-                                <span class="post-date">{{ post.date_str }}</span>
-                            </div>
-                            {% if post.tags %}
-                            <div class="post-tags">
-                                {% for tag in post.tags %}
-                                <span class="tag">{{ tag }}</span>
-                                {% endfor %}
-                            </div>
-                            {% endif %}
-                        </article>
-                        {% endfor %}
-                    {% else %}
-                    <p class="empty-state">暫無文章</p>
-                    {% endif %}
-                </div>
-                <a href="/life-thoughts" class="view-all">查看全部 →</a>
-            </div>
+                        </div>
+                        {% if post.tags %}
+                        <div class="post-tags">
+                            {% for tag in post.tags[:2] %}
+                            <span class="tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </article>
+                {% endfor %}
+            {% else %}
+            <p class="empty-state">暫無文章</p>
+            {% endif %}
         </div>
     </section>
     
-    <!-- 關於本實驗室 -->
-    <section class="about-preview">
-        <h2 class="section-title">關於本實驗室</h2>
-        <div class="about-content">
-            <p>
-                這是一個致力於技術研究與分享的個人部落格。
-                我們專注於深入探討系統架構、硬體設計和技術細節，
-                透過實驗和拆解來理解技術的本質。
-            </p>
-            <a href="/about" class="btn btn-outline">認識首席研究員 →</a>
+    <!-- 分類和標籤區域 -->
+    <section class="categories-section">
+        <div class="categories-grid">
+            <div class="category-block">
+                <h3 class="category-title">Categories</h3>
+                <ul class="category-list">
+                    <li><a href="/tech-logs" class="category-link">🔍 滲透紀錄</a></li>
+                    <li><a href="/device-analysis" class="category-link">🔧 樣本拆解</a></li>
+                    <li><a href="/life-thoughts" class="category-link">💭 生活碎念</a></li>
+                </ul>
+            </div>
+            
+            <div class="category-block">
+                <h3 class="category-title">Tags</h3>
+                <div class="tags-cloud">
+                    {% set all_tags = [] %}
+                    {% for post in all_posts %}
+                        {% if post.tags %}
+                            {% for tag in post.tags %}
+                                {% if tag not in all_tags %}
+                                    {% set _ = all_tags.append(tag) %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% for tag in all_tags[:12] %}
+                    <a href="#" class="tag-link">{{ tag }}</a>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </section>
 </div>
