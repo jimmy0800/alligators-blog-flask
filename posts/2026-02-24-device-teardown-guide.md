@@ -10,7 +10,7 @@ image: /static/images/tech-life-illustration.png
 # 硬體拆解指南：安全與技巧
 
 硬體拆解是理解電子設備內部構造的最直接方式。在本文中，我們將探討安全、有效的拆解方法和最佳實踐。
-![技術人的工作環境](/static/images/404.jpg)
+![硬體拆解示例](/static/images/404.jpeg)
 
 ## 🎯 為什麼要拆解硬體？
 
