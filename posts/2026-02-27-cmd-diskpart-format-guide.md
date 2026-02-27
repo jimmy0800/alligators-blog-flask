@@ -4,7 +4,9 @@ category: tech-logs
 tags: Windows, CMD, Diskpart, 格式化, 教學
 image: /static/images/format-drive-cmd-hero.png
 ---
-![Diskpart教學](/static/images/format-drive-cmd-hero.png
+
+![Diskpart教學](/static/images/format-drive-cmd-hero.png)
+
 
 # 使用 CMD 命令提示字元格式化硬碟：Diskpart 完全指南
 
