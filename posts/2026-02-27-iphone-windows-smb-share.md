@@ -1,5 +1,5 @@
 ---
-title: Windows 與 iPhone 檔案互傳：免軟體、內網共享資料夾設定指南
+title: 打破IPHONE傳輸速度免軟體
 category: tech-logs
 tags: Windows, iPhone, SMB, 檔案分享, 教學, CMD
 image: /static/images/smb-share-hero.png
