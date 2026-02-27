@@ -5,11 +5,13 @@ tags: Windows, iPhone, SMB, 檔案分享, 教學, CMD
 image: /static/images/smb-share-hero.png
 ---
 
-![Windows 與 iPhone 互傳檔案](/static/images/smb-share-hero.png)
+
 
 # Windows 與 iPhone 檔案互傳：免軟體、內網共享資料夾設定指南
 
 要在 Windows 與 iPhone 之間互傳檔案，除了使用 iTunes、iCloud 或第三方雲端服務外，其實有一種更直接、更私密的方法：**建立 Windows 共用資料夾**。只要兩台裝置在同一個內網下，就能像存取隨身碟一樣輕鬆傳輸。
+
+![Windows 與 iPhone 互傳檔案](/static/images/smb-share-hero.png)
 
 ## 🛠️ Windows 端設定步驟
 
