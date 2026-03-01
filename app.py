@@ -54,7 +54,7 @@ md = markdown.Markdown(
                 {
                     'name': 'mermaid',
                     'class': 'mermaid',
-                    'format': lambda s: f'<div class="mermaid">{s}</div>',
+                    'format': lambda s, info, **kwargs: f'<div class="mermaid">{s}</div>',
                 }
             ]
         }

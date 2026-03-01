@@ -70,7 +70,11 @@
 <!-- Mermaid - 渲染流程圖 -->
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <script>
-    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    mermaid.initialize({ startOnLoad: true, theme: 'dark', securityLevel: 'loose' });
     mermaid.contentLoaded();
+    // 確保 Mermaid 能找到所有圖表
+    if (typeof mermaid !== 'undefined') {
+        mermaid.run();
+    }
 </script>
 {% endblock %}
