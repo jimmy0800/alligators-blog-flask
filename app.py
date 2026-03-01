@@ -38,11 +38,25 @@ md = markdown.Markdown(
         'markdown.extensions.codehilite',
         'markdown.extensions.extra',
         'markdown.extensions.nl2br',
+        'pymdownx.arithmatex',  # 支援 LaTeX 公式
+        'pymdownx.superfences',  # 支援 Mermaid 圖表
     ],
     extension_configs={
         'markdown.extensions.codehilite': {
             'use_pygments': True,
             'css_class': 'highlight',
+        },
+        'pymdownx.arithmatex': {
+            'generic': True,
+        },
+        'pymdownx.superfences': {
+            'custom_fences': [
+                {
+                    'name': 'mermaid',
+                    'class': 'mermaid',
+                    'format': lambda s: f'<div class="mermaid">{s}</div>',
+                }
+            ]
         }
     }
 )
