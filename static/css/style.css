@@ -553,6 +553,35 @@ body {
 }
 
 /* ============================================================================
+   文章頁腳 - 返回按鈕
+   ============================================================================ */
+
+.post-footer {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--border-color-light);
+}
+
+.post-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.post-nav a {
+    flex: 1;
+}
+
+.post-nav a:first-child {
+    text-align: left;
+}
+
+.post-nav a:last-child {
+    text-align: right;
+}
+
+/* ============================================================================
    複製按鈕 - 位置在代碼塊右上角
    ============================================================================ */
 
