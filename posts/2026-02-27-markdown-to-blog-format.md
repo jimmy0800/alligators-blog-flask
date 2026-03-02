@@ -5,9 +5,11 @@ tags: Markdown, 部落格, 教學, 文檔管理
 image: /static/images/tech-life-illustration.png
 ---
 
-![Markdown 轉換](/static/images/tech-life-illustration.png)
+
 
 # Markdown 檔案轉換指南：讓舊文章適配部落格系統
+
+![Markdown 轉換](/static/images/tech-life-illustration.png)
 
 如果您已經有一些用 Markdown 撰寫的文章，想要將它們遷移到下水道實驗室部落格，本文將為您詳細介紹轉換過程。好消息是：**轉換非常簡單！** 只需要在檔案開頭添加一些元數據即可。
 
@@ -175,90 +177,16 @@ app = Flask(__name__)
 def hello():
     return 'Hello, World!'
 ```
+## 🎓 總結
 
-## 總結
+轉換舊 Markdown 檔案到部落格系統只需要三個簡單的步驟：
 
-Flask 是開發 Web 應用的絕佳選擇...
-```
+1. **添加 frontmatter**：在檔案開頭添加 YAML 元數據
+2. **準備圖片**：上傳代表性圖片到 `/static/images/`
+3. **提交上傳**：使用 Git 推送到 GitHub，然後在 VPS 上拉取
 
-### 轉換後的檔案（新格式）
+完成後，您的文章會自動出現在首頁和對應的分類頁面上。
 
-```markdown
----
-title: Flask 部落格架構完全指南
-category: tech-logs
-tags: Flask, Python, Web 開發, 教學
-image: /static/images/flask-guide.png
----
-
-# Flask 部落格架構完全指南
-
-Flask 是一個輕量級的 Python Web 框架...
-
-## 為什麼選擇 Flask？
-
-1. **簡單易學**：語法直觀，新手友好
-2. **靈活性強**：可以自由組合各種擴展
-3. **社群活躍**：有大量的教程和資源
-
-## 基本架構
-
-```python
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route('/')
-def hello():
-    return 'Hello, World!'
-```
-
-## 總結
-
-Flask 是開發 Web 應用的絕佳選擇...
-```
-
-## 🚀 上傳到部落格
-
-### 步驟 1：準備檔案
-
-確保您的 `.md` 檔案已經轉換完成，並且：
-- ✅ 檔案名稱格式：`YYYY-MM-DD-文章標題.md`（例如 `2026-02-27-flask-guide.md`）
-- ✅ 檔案開頭有正確的 frontmatter
-- ✅ 所有圖片都已上傳到 `/static/images/`
-
-### 步驟 2：提交到 GitHub
-
-```bash
-# 在本地電腦上
-cd /path/to/alligators-blog-flask
-
-# 添加檔案
-git add posts/2026-02-27-flask-guide.md
-git add static/images/flask-guide.png
-
-# 提交
-git commit -m "Add Flask guide article"
-
-# 推送
-git push origin master
-```
-
-### 步驟 3：在 VPS 上更新
-
-```bash
-# 在 VPS 上
-cd /path/to/alligators-blog-flask
-
-# 拉取最新更新
-git pull origin master
-```
-
-### 步驟 4：查看結果
-
-1. 刷新瀏覽器訪問首頁：`http://your-domain.com/`
-2. 您應該會在「Recent」區域看到新文章
-3. 點擊文章卡片可以查看完整內容
 
 ## ⚠️ 常見錯誤
 
@@ -363,18 +291,4 @@ title: 我的文章
 title: Flask
 ```
 
-## 🎓 總結
 
-轉換舊 Markdown 檔案到部落格系統只需要三個簡單的步驟：
-
-1. **添加 frontmatter**：在檔案開頭添加 YAML 元數據
-2. **準備圖片**：上傳代表性圖片到 `/static/images/`
-3. **提交上傳**：使用 Git 推送到 GitHub，然後在 VPS 上拉取
-
-完成後，您的文章會自動出現在首頁和對應的分類頁面上。
-
-祝您轉換愉快！如有任何問題，可以參考本文的「常見錯誤」部分。
-
----
-
-**下一步**：準備好您的舊文章，按照本指南進行轉換，然後分享到部落格吧！🚀
