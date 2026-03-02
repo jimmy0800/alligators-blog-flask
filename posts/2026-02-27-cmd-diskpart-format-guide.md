@@ -5,7 +5,7 @@ tags: Windows, CMD, Diskpart, 格式化, 教學
 image: /static/images/format-drive-cmd-hero.png
 ---
 
-![Diskpart教學](/static/images/format-drive-cmd-hero.png)
+
 
 
 # 使用 CMD 命令提示字元格式化硬碟：Diskpart 完全指南
@@ -13,6 +13,8 @@ image: /static/images/format-drive-cmd-hero.png
 當 Windows 介面無法正常格式化硬碟或隨身碟時，使用內建的 `diskpart` 指令是最強大且有效的解決方案。本文將手把手教您如何透過命令提示字元（CMD）完成磁碟清理與格式化。
 
 > ⚠️ **警告**：執行以下步驟會清除目標磁碟中的所有資料，請務必確認選取的磁碟編號正確，並在操作前完成資料備份。
+
+![Diskpart教學](/static/images/format-drive-cmd-hero.png)
 
 ## 📋 操作步驟
 
