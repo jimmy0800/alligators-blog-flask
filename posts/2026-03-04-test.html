@@ -1,0 +1,491 @@
+<!--
+title: Markdown 語法速查：互動對照表
+date: 2026-03-04
+tags: [Markdown, 教學, 互動]
+description: 左邊寫 Markdown，右邊即時看結果。一張表學完所有常用語法。
+-->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markdown 語法速查：互動對照表</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+TC:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface2: #242424;
+    --border: #2e2e2e;
+    --accent: #e8ff47;
+    --accent2: #47ffe0;
+    --text: #f0f0f0;
+    --text-muted: #888;
+    --green: #6aff8a;
+    --red: #ff6a6a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans TC', sans-serif;
+    min-height: 100vh;
+    padding: 48px 24px;
+  }
+
+  .hero {
+    max-width: 860px;
+    margin: 0 auto 56px;
+    position: relative;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 3px 10px;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  h1 span {
+    color: var(--accent);
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 520px;
+  }
+
+  /* ── 對照表 ── */
+  .demo-section {
+    max-width: 860px;
+    margin: 0 auto 40px;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .col-header {
+    background: var(--surface2);
+    padding: 10px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .col-header.syntax { color: var(--accent); }
+  .col-header.result { color: var(--accent2); }
+
+  .compare-row {
+    display: contents;
+  }
+
+  .compare-row:hover .cell {
+    background: #1f1f1f;
+  }
+
+  .cell {
+    background: var(--surface);
+    padding: 16px 20px;
+    transition: background 0.15s;
+  }
+
+  .cell code, .syntax-cell {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #c9d1d9;
+    line-height: 1.7;
+    white-space: pre;
+  }
+
+  .result-cell {
+    display: flex;
+    align-items: center;
+  }
+
+  .result-cell .inner { width: 100%; }
+
+  /* rendered styles */
+  .r-h1 { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; }
+  .r-h2 { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--accent2); }
+  .r-h3 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; }
+  .r-bold { font-weight: 700; }
+  .r-italic { font-style: italic; color: #ccc; }
+  .r-bold-italic { font-weight: 700; font-style: italic; color: var(--accent); }
+  .r-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background: #2d2d2d;
+    padding: 2px 7px;
+    border-radius: 3px;
+    color: var(--accent2);
+  }
+  .r-hr { border: none; border-top: 1px solid var(--border); width: 100%; }
+  .r-quote {
+    border-left: 3px solid var(--accent);
+    padding-left: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .r-ul { padding-left: 20px; }
+  .r-ul li { margin: 3px 0; }
+  .r-ul li::marker { color: var(--accent); }
+  .r-link { color: var(--accent2); text-decoration: underline; text-underline-offset: 3px; }
+  .r-img-hint {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--surface2); border-radius: 6px;
+    padding: 10px 14px; font-size: 13px; color: var(--text-muted);
+  }
+  .r-codeblock {
+    background: #161616;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #c9d1d9;
+    white-space: pre;
+  }
+  .r-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .r-table th {
+    background: var(--surface2); padding: 6px 12px;
+    text-align: left; font-weight: 600; color: var(--accent);
+    border-bottom: 1px solid var(--border);
+  }
+  .r-table td { padding: 6px 12px; border-bottom: 1px solid var(--border); }
+
+  /* ── 優點卡片 ── */
+  .advantages {
+    max-width: 860px;
+    margin: 56px auto 0;
+  }
+
+  .adv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .adv-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .adv-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+
+  .adv-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .adv-card:hover::before { opacity: 1; }
+
+  .adv-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 12px;
+    transition: color 0.2s;
+  }
+
+  .adv-card:hover .adv-num { color: var(--accent); }
+
+  .adv-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .adv-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── interactive demo ── */
+  .live-demo {
+    max-width: 860px;
+    margin: 56px auto 0;
+  }
+
+  .editor-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 16px;
+  }
+
+  textarea {
+    background: var(--surface);
+    color: var(--text);
+    border: none;
+    padding: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    resize: none;
+    height: 220px;
+    outline: none;
+  }
+
+  #preview {
+    background: var(--surface);
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-y: auto;
+    height: 220px;
+  }
+
+  #preview h1, #preview h2, #preview h3 { font-family: 'Syne', sans-serif; margin: 8px 0 4px; }
+  #preview h1 { font-size: 20px; }
+  #preview h2 { font-size: 17px; color: var(--accent2); }
+  #preview strong { color: var(--accent); }
+  #preview em { color: #ccc; }
+  #preview code { font-family: 'JetBrains Mono', monospace; background: #2d2d2d; padding: 1px 6px; border-radius: 3px; color: var(--accent2); font-size: 12px; }
+  #preview ul { padding-left: 20px; }
+  #preview ul li::marker { color: var(--accent); }
+  #preview blockquote { border-left: 3px solid var(--accent); padding-left: 12px; color: var(--text-muted); font-style: italic; }
+  #preview hr { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+  #preview a { color: var(--accent2); }
+  #preview p { margin: 4px 0; }
+
+  @media (max-width: 600px) {
+    .compare-grid, .editor-wrap { grid-template-columns: 1fr; }
+    .col-header.result, .result-cell { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="tag">HTML Post · 互動版</div>
+  <h1>Markdown<br><span>語法速查</span></h1>
+  <p class="subtitle">所有你需要的 Markdown 語法，一頁看完。最後還有即時編輯器讓你馬上練習。</p>
+</div>
+
+<!-- 對照表 -->
+<div class="demo-section">
+  <div class="section-label">語法對照</div>
+  <div class="compare-grid">
+    <div class="col-header syntax">// 你輸入的語法</div>
+    <div class="col-header result">// 渲染後的結果</div>
+
+    <!-- 標題 -->
+    <div class="cell"><code># 大標題
+## 中標題
+### 小標題</code></div>
+    <div class="cell result-cell"><div class="inner">
+      <div class="r-h1">大標題</div>
+      <div class="r-h2">中標題</div>
+      <div class="r-h3">小標題</div>
+    </div></div>
+
+    <!-- 強調 -->
+    <div class="cell"><code>**粗體文字**
+*斜體文字*
+***粗斜體***</code></div>
+    <div class="cell result-cell"><div class="inner">
+      <div><span class="r-bold">粗體文字</span></div>
+      <div><span class="r-italic">斜體文字</span></div>
+      <div><span class="r-bold-italic">粗斜體</span></div>
+    </div></div>
+
+    <!-- 程式碼 -->
+    <div class="cell"><code>`行內程式碼`
+
+```python
+print("Hello")
+```</code></div>
+    <div class="cell result-cell"><div class="inner">
+      <div style="margin-bottom:10px"><span class="r-code">行內程式碼</span></div>
+      <div class="r-codeblock">print("Hello")</div>
+    </div></div>
+
+    <!-- 清單 -->
+    <div class="cell"><code>- 第一項
+- 第二項
+  - 子項目</code></div>
+    <div class="cell result-cell"><div class="inner">
+      <ul class="r-ul">
+        <li>第一項</li>
+        <li>第二項
+          <ul class="r-ul"><li>子項目</li></ul>
+        </li>
+      </ul>
+    </div></div>
+
+    <!-- 引用 -->
+    <div class="cell"><code>> 這是一段引用文字
+> 可以多行</code></div>
+    <div class="cell result-cell"><div class="inner">
+      <blockquote class="r-quote">這是一段引用文字<br>可以多行</blockquote>
+    </div></div>
+
+    <!-- 連結與圖片 -->
+    <div class="cell"><code>[連結文字](https://...)
+![圖片說明](image.png)</code></div>
+    <div class="cell result-cell"><div class="inner">
+      <div style="margin-bottom:8px"><a class="r-link" href="#">連結文字</a></div>
+      <div class="r-img-hint">🖼️ 圖片說明</div>
+    </div></div>
+
+    <!-- 表格 -->
+    <div class="cell"><code>| 名稱 | 說明 |
+|------|------|
+| MD   | 標記語言 |</code></div>
+    <div class="cell result-cell"><div class="inner">
+      <table class="r-table">
+        <tr><th>名稱</th><th>說明</th></tr>
+        <tr><td>MD</td><td>標記語言</td></tr>
+      </table>
+    </div></div>
+
+    <!-- 分隔線 -->
+    <div class="cell"><code>---</code></div>
+    <div class="cell result-cell"><div class="inner">
+      <hr class="r-hr">
+    </div></div>
+  </div>
+</div>
+
+<!-- 優點卡片 -->
+<div class="advantages">
+  <div class="section-label">為什麼選擇 Markdown</div>
+  <div class="adv-grid">
+    <div class="adv-card">
+      <div class="adv-num">01</div>
+      <div class="adv-title">純文字，永不過時</div>
+      <div class="adv-desc">十年後用記事本打開，一個字都不會變。不像 .docx 可能因版本問題損毀。</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-num">02</div>
+      <div class="adv-title">Git 友善</div>
+      <div class="adv-desc">純文字讓 Git 能精確追蹤每個字的修改，版本控制完美支援。</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-num">03</div>
+      <div class="adv-title">一次撰寫</div>
+      <div class="adv-desc">同一份 .md 可輸出為 HTML、PDF、投影片、電子書，多平台通用。</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-num">04</div>
+      <div class="adv-title">專注內容</div>
+      <div class="adv-desc">語法直覺到可以忽略，讓你進入心流狀態，把注意力放在「寫什麼」而非「怎麼排版」。</div>
+    </div>
+  </div>
+</div>
+
+<!-- 即時編輯器 -->
+<div class="live-demo">
+  <div class="section-label">即時練習</div>
+  <div class="editor-wrap">
+    <textarea id="editor" placeholder="在這裡輸入 Markdown...
+# 試試看標題
+**粗體** 和 *斜體*
+- 清單項目"># 動手試試看
+**Markdown** 真的很好學
+- 這是清單
+- 第二項
+
+> 引用一段話
+
+`print("Hello, Markdown!")`</textarea>
+    <div id="preview"></div>
+  </div>
+</div>
+
+<script>
+  // Simple Markdown parser for demo
+  function parseMarkdown(md) {
+    return md
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      // restore blockquote >
+      .replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>')
+      .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+      .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+      .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+      .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/^---$/gm, '<hr>')
+      .replace(/^- (.+)$/gm, '<li>$1</li>')
+      .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
+      .replace(/\n(?!<)/g, '<br>');
+  }
+
+  const editor = document.getElementById('editor');
+  const preview = document.getElementById('preview');
+
+  function update() {
+    preview.innerHTML = parseMarkdown(editor.value);
+  }
+
+  editor.addEventListener('input', update);
+  update();
+</script>
+</body>
+</html>
