@@ -349,13 +349,3 @@ MIT License
 
 歡迎提交 Issue 和 Pull Request！
 
-## 📞 聯絡方式
-
-- 📧 Email: contact@alligators-lab.com
-- 🐙 GitHub: [@alligators-lab](https://github.com)
-
----
-
-**下水道實驗室 | Alligator's Lab**
-
-「在底層邏輯中，挖掘技術的寶藏。」
