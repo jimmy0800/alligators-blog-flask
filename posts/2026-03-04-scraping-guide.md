@@ -11,7 +11,8 @@ image: /static/images/scraping-automation.png
 > 本教學專為工程數據蒐集需求設計，涵蓋 Selenium/Playwright 工具選擇、動態網頁處理、資料清洗與結構化輸出，協助您穩定抓取政府公開資料。
 
 ---
-image: /static/images/scraping-automation.png
+![爬蟲基本教學](/image: /static/images/scraping-automation.png)
+
 ## 📦 第一章：開發環境準備
 
 ### 必備套件安裝清單
