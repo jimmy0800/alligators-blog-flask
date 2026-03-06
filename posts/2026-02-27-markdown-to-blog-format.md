@@ -2,14 +2,14 @@
 title: Markdown 檔案轉換指南：讓舊文章適配部落格系統
 category: tech-logs
 tags: Markdown, 部落格, 教學, 文檔管理
-image: /static/images/tech-life-illustration.png
+image: /static/images/blog-migration-hero.png
 ---
 
 
 
 # Markdown 檔案轉換指南：讓舊文章適配部落格系統
 
-![Markdown 轉換](/static/images/tech-life-illustration.png)
+![Markdown 轉換](/static/images/blog-migration-hero.png)
 
 如果您已經有一些用 Markdown 撰寫的文章，想要將它們遷移到下水道實驗室部落格，本文將為您詳細介紹轉換過程。好消息是：**轉換非常簡單！** 只需要在檔案開頭添加一些元數據即可。
 
