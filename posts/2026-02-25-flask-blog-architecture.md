@@ -2,7 +2,7 @@
 title: Flask 部落格架構：從零到一
 category: tech-logs
 tags: Flask, Python, 架構設計
-image: /static/images/tech-life-illustration.png
+image: /static/images/flask-markdown-blog-hero.png
 ---
 
 
@@ -11,7 +11,7 @@ image: /static/images/tech-life-illustration.png
 
 在本文中，我們將深入探討如何使用 Flask 和 Markdown 構建一個輕量級、易於維護的部落格系統。
 
-![Flask 架構](/static/images/tech-life-illustration.png)
+![Flask 架構](/static/images/flask-markdown-blog-hero.png)
 ## 🎯 設計目標
 
 我們的部落格系統需要滿足以下要求：
