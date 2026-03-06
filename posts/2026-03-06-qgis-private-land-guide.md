@@ -10,6 +10,8 @@ image: /static/images/qgis-layer-attribute-table.png
 
 本教學旨在指導如何利用 **QGIS** 與 **SewerCAD** 資料，精確計算管線經過私有地時應支付的補償費用。
 
+![土地償金計算示意圖](/static/images/qgis-layer-attribute-table.png)
+
 ## 一、 前置作業與資料準備
 
 在開始空間分析前，必須確保地籍資料與市價資訊已正確整合。
